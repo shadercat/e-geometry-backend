@@ -8,33 +8,9 @@ import ua.nure.egeometry.egeometry.repository.UserRepository;
 import ua.nure.egeometry.egeometry.entity.UserEntity;
 
 @SpringBootApplication
-public class ServiceLauncher implements CommandLineRunner {
-
-    @Autowired
-    private UserRepository userRepository;
+public class ServiceLauncher {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceLauncher.class, args);
     }
-
-    @Override
-    public void run(String... args) throws Exception {
-
-        userRepository.deleteAll();
-
-        // save a couple of customers
-        userRepository.save(new UserEntity("Alice", "Smith", "Gfg", "USER"));
-        userRepository.save(new UserEntity("Alice2", "Smith2", "Gfg2", "USER"));
-
-        // fetch all customers
-        System.out.println("Users found with findAll():");
-        System.out.println("-------------------------------");
-        for (UserEntity customer : userRepository.findAll()) {
-            System.out.println(customer);
-        }
-        System.out.println();
-
-
-    }
-
 }
