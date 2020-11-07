@@ -5,15 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity {
+@Data
+public class ProfileEntity {
     @Id
     private String id;
-    private String email;
-    private String password;
-    private String username;
-    private String role;
-    private ProfileEntity profile;
+    private String firstName;
+    private String lastName;
 }

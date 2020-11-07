@@ -41,16 +41,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors().and()
-                // remove csrf and state in session because in jwt we do not need them
                 .csrf().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                // add jwt filters (1. authentication, 2. authorization)
                 .addFilter(new JwtAuthenticationFilter(authenticationManager()))
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.personRepository))
                 .authorizeRequests()
                 .antMatchers("/signUp", "/login").permitAll()
-                // configure access rules
+                .antMatchers("/user/get/profile/{id}", "/user/set/profile").authenticated()
                 .anyRequest().authenticated();
     }
 

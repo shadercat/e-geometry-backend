@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface UserService {
     UserEntity getByEmail(String email);
-    UserEntity create(UserEntity person);
+    UserEntity createOrUpdate(UserEntity person);
     List<UserEntity> getAll();
+    UserEntity getById(String id);
 }

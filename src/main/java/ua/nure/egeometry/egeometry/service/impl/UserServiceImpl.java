@@ -1,6 +1,5 @@
 package ua.nure.egeometry.egeometry.service.impl;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.nure.egeometry.egeometry.entity.UserEntity;
@@ -10,9 +9,8 @@ import ua.nure.egeometry.egeometry.service.UserService;
 import java.util.List;
 
 @Service
-@Slf4j
 public class UserServiceImpl implements UserService {
-    private UserRepository personRepository;
+    private final UserRepository personRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository personRepository) {
@@ -25,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity create(UserEntity person) {
+    public UserEntity createOrUpdate(UserEntity person) {
         personRepository.save(person);
         return person;
     }
@@ -33,6 +31,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<UserEntity> getAll() {
         return personRepository.findAll();
+    }
+
+    @Override
+    public UserEntity getById(String id) {
+        return personRepository.findById(id).get();
     }
 
 }
