@@ -10,11 +10,11 @@ import ua.nure.egeometry.egeometry.rest.model.ProfileDto;
 import ua.nure.egeometry.egeometry.service.UserService;
 
 @RestController
-public class ProfileController {
+public class PersonalPageController {
     private final UserService userService;
 
     @Autowired
-    public ProfileController(UserService userService) {
+    public PersonalPageController(UserService userService) {
         this.userService = userService;
     }
 
